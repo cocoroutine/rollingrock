@@ -4,9 +4,8 @@ var mongoose = require('mongoose');
 var Column = require('../models/column.js');
 var Table = require('../models/table.js');
 var Slab = require('../models/slab.js');
-var myauth = require('../middleware/basic.js');
 
-router.get('/:tblname/:slab', myauth, async function (req, res, next) {
+router.get('/:tblname/:slab', async function (req, res, next) {
   try {
     const masterSlab = await Slab.findOne({ master: true }).exec()
 

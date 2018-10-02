@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Slab = require('../models/slab.js');
-var myauth = require('../middleware/basic.js');
 
 //list all
 router.get('/', async function(req, res, next) {
@@ -15,7 +14,7 @@ router.get('/', async function(req, res, next) {
 });
 
 //create
-router.post('/', myauth, async function(req, res, next) {
+router.post('/', async function(req, res, next) {
   try {
     const slab = await Slab.create(req.body)
     res.json(slab)
@@ -65,7 +64,7 @@ router.get('/:id', async function(req, res, next) {
 });
 
 //update
-router.put('/:id', myauth, async function(req, res, next) {
+router.put('/:id', async function(req, res, next) {
   try {
     const slab = await Slab.findByIdAndUpdate(req.params.id, req.body).exec()
     res.json(slab)
@@ -76,7 +75,7 @@ router.put('/:id', myauth, async function(req, res, next) {
 
 
 // fake delete
-router.delete('/:id', myauth, async function(req, res, next) {
+router.delete('/:id', async function(req, res, next) {
   try {
     const slab = await Slab.findByIdAndUpdate(
       req.params.id,

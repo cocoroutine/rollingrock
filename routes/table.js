@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 var Column = require('../models/column.js');
 var Table = require('../models/table.js');
 var Slab = require('../models/slab.js');
-var myauth = require('../middleware/basic.js');
 
 //list all
 router.get('/', async function(req, res, next) {
@@ -17,7 +16,7 @@ router.get('/', async function(req, res, next) {
 });
 
 //create
-router.post('/', myauth, async function(req, res, next) {
+router.post('/', async function(req, res, next) {
   try {
     const table = await Table.create(req.body)
     let slab = await Slab.findById(table._slabId).exec()
@@ -49,7 +48,7 @@ router.get('/:id', async function(req, res, next) {
 });
 
 //update
-router.put('/:id', myauth, async function(req, res, next) {
+router.put('/:id', async function(req, res, next) {
   try {
     const table = await Table.findByIdAndUpdate(req.params.id, req.body).exec()
     res.json(table)
@@ -59,7 +58,7 @@ router.put('/:id', myauth, async function(req, res, next) {
 });
 
 //delete
-router.delete('/:id', myauth, async function(req, res, next) {
+router.delete('/:id', async function(req, res, next) {
   try {
     const table = await Table.findByIdAndRemove(req.params.id).exec()
     res.json(table)

@@ -48,7 +48,7 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 //Set up default mongoose connection
-var mongoDB = 'mongodb://mongorr:27017/slab-dev';
+var mongoDB = 'mongodb://127.0.0.1:27017/slab-dev';
 const options = { useNewUrlParser: true };
 mongoose.connect(mongoDB, options);
 // Get Mongoose to use the global promise library
